@@ -18,6 +18,7 @@ describe("student sign up flow straight forward and If user entered previously u
     cy.intercept("GET", "https://predictly.azurewebsites.net/subject").as(
       "subject"
     );
+    cy.wait(400);
     cy.wait("@school").then(({ response }) => {
       expect(response.statusCode).to.eq(200);
     });
@@ -36,13 +37,13 @@ describe("student sign up flow straight forward and If user entered previously u
   });
 
   it("student should be able to set credentials", () => {
-    cy.get('[data-qa="signup_finish_input_username"]').type("sanjana99");
-    step5();
-    cy.get('[data-qa="signup_finish_btn_submit"]').click();
     cy.intercept(
       "POST",
       "https://predictly.azurewebsites.net/auth/register"
     ).as("register");
+    cy.get('[data-qa="signup_finish_input_username"]').type("sanjana99");
+    step5();
+    cy.get('[data-qa="signup_finish_btn_submit"]').click();
     cy.wait("@register").then(({ response }) => {
       expect(response.statusCode).to.eq(409);
       expect(response.body.message).to.eq("Email is already exists!");
@@ -68,6 +69,7 @@ describe("student sign up flow straight forward and If user entered previously u
     cy.intercept("GET", "https://predictly.azurewebsites.net/subject").as(
       "subject"
     );
+    cy.wait(400);
     cy.wait("@school").then(({ response }) => {
       expect(response.statusCode).to.eq(200);
     });
@@ -86,13 +88,14 @@ describe("student sign up flow straight forward and If user entered previously u
   });
 
   it("student should be able to set credentials", () => {
-    cy.get('[data-qa="signup_finish_input_username"]').type("sanjanasw");
-    step5();
-    cy.get('[data-qa="signup_finish_btn_submit"]').click();
     cy.intercept(
       "POST",
       "https://predictly.azurewebsites.net/auth/register"
     ).as("register");
+    cy.get('[data-qa="signup_finish_input_username"]').type("sanjanasw");
+    step5();
+    cy.get('[data-qa="signup_finish_btn_submit"]').click();
+
     cy.wait("@register").then(({ response }) => {
       expect(response.statusCode).to.eq(409);
       expect(response.body.message).to.eq("Username is already exists!");
