@@ -1,7 +1,7 @@
 //existing school name
 describe("school sign up flow straight forward and If user entered previously added school should display error message", () => {
   it("school user should be able to visit school register flow", () => {
-    cy.visit("http://localhost:4200//auth/login");
+    cy.visit("https://app.predictly.live/auth/login");
     cy.get('[data-qa="auth_login_link_school_signup"]').click();
   });
 
@@ -22,9 +22,10 @@ describe("school sign up flow straight forward and If user entered previously ad
     );
 
     step2();
-    cy.intercept("POST", "https://localhost:5001/auth/school-register").as(
-      "register"
-    );
+    cy.intercept(
+      "POST",
+      "https://predictly.azurewebsites.net/auth/school-register"
+    ).as("register");
     cy.get('[data-qa="school-register_finish_btn_submit"]').click();
     cy.wait("@register").then(({ response }) => {
       expect(response.statusCode).to.eq(409);
@@ -36,7 +37,7 @@ describe("school sign up flow straight forward and If user entered previously ad
 //existing username
 describe("school sign up flow straight forward and If user entered previously used username should display error message", () => {
   it("school user should be able to visit school register flow", () => {
-    cy.visit("http://localhost:4200//auth/login");
+    cy.visit("https://app.predictly.live/auth/login");
     cy.get('[data-qa="auth_login_link_school_signup"]').click();
   });
 
@@ -57,9 +58,7 @@ describe("school sign up flow straight forward and If user entered previously us
     );
 
     step2();
-    cy.intercept("POST", "https://localhost:5001/auth/school-register").as(
-      "register"
-    );
+    cy.intercept("POST", "**/auth/school-register").as("register");
     cy.get('[data-qa="school-register_finish_btn_submit"]').click();
     cy.wait("@register").then(({ response }) => {
       expect(response.statusCode).to.eq(409);
@@ -71,7 +70,7 @@ describe("school sign up flow straight forward and If user entered previously us
 //existing email
 describe("school sign up flow straight forward and If user entered previously used email should display error message", () => {
   it("school user should be able to visit school register flow", () => {
-    cy.visit("http://localhost:4200//auth/login");
+    cy.visit("https://app.predictly.live/auth/login");
     cy.get('[data-qa="auth_login_link_school_signup"]').click();
   });
 
@@ -90,9 +89,7 @@ describe("school sign up flow straight forward and If user entered previously us
     );
 
     step2();
-    cy.intercept("POST", "https://localhost:5001/auth/school-register").as(
-      "register"
-    );
+    cy.intercept("POST", "**/auth/school-register").as("register");
     cy.get('[data-qa="school-register_finish_btn_submit"]').click();
     cy.wait("@register").then(({ response }) => {
       expect(response.statusCode).to.eq(409);

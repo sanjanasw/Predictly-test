@@ -1,6 +1,6 @@
 describe("student should be able to login to system using login screen", () => {
   it("student should be able to login to the system", () => {
-    cy.visit("http://localhost:4200/auth/login");
+    cy.visit("https://app.predictly.live/auth/login");
     cy.intercept("POST", "**/auth/login").as("login");
 
     cy.get('[data-qa="auth_login_input_username"]').type("sanjanasw");
@@ -19,7 +19,7 @@ describe("student should be able to login to system using login screen", () => {
   });
 
   it("Schools should be able to login to the system", () => {
-    cy.visit("http://localhost:4200/auth/login");
+    cy.visit("https://app.predictly.live/auth/login");
     cy.intercept("POST", "**/auth/login").as("login");
 
     cy.get('[data-qa="auth_login_input_username"]').type("visionAdmin");
@@ -38,7 +38,7 @@ describe("student should be able to login to system using login screen", () => {
   });
 
   it("Admins should be able to login to the system", () => {
-    cy.visit("http://localhost:4200/auth/login");
+    cy.visit("https://app.predictly.live/auth/login");
     cy.intercept("POST", "**/auth/login").as("login");
 
     cy.get('[data-qa="auth_login_input_username"]').type("admin");
@@ -95,7 +95,7 @@ describe("student should be able to login to system using login screen", () => {
   });
 
   it("users should be able to click login button without filling form", () => {
-    cy.visit("http://localhost:4200/auth/login");
+    cy.visit("https://app.predictly.live/auth/login");
     cy.intercept("POST", "**/auth/login").as("login");
 
     cy.get('[data-qa="auth_login_btn_login"]').should("be.disabled");

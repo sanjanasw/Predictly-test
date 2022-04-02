@@ -1,6 +1,6 @@
 describe("users should be able to reset their password", () => {
   it("users should be able to visit forgot-password page", () => {
-    cy.visit("http://localhost:4200/auth/login");
+    cy.visit("https://app.predictly.live/auth/login");
     cy.get('[data-qa="auth_login_link_forgot_password"]').click();
   });
 

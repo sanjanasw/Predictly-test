@@ -12,19 +12,6 @@ describe("student sign up flow straight forward and If user entered previously u
   });
 
   it("student should be able to enter educational data ", () => {
-    cy.intercept("GET", "https://predictly.azurewebsites.net/school").as(
-      "school"
-    );
-    cy.intercept("GET", "https://predictly.azurewebsites.net/subject").as(
-      "subject"
-    );
-    cy.wait(400);
-    cy.wait("@school").then(({ response }) => {
-      expect(response.statusCode).to.eq(200);
-    });
-    cy.wait("@subject").then(({ response }) => {
-      expect(response.statusCode).to.eq(200);
-    });
     step2();
   });
 
@@ -37,10 +24,7 @@ describe("student sign up flow straight forward and If user entered previously u
   });
 
   it("student should be able to set credentials", () => {
-    cy.intercept(
-      "POST",
-      "https://predictly.azurewebsites.net/auth/register"
-    ).as("register");
+    cy.intercept("POST", "**/auth/register").as("register");
     cy.get('[data-qa="signup_finish_input_username"]').type("sanjana99");
     step5();
     cy.get('[data-qa="signup_finish_btn_submit"]').click();
@@ -63,19 +47,6 @@ describe("student sign up flow straight forward and If user entered previously u
   });
 
   it("student should be able to enter educational data ", () => {
-    cy.intercept("GET", "https://predictly.azurewebsites.net/school").as(
-      "school"
-    );
-    cy.intercept("GET", "https://predictly.azurewebsites.net/subject").as(
-      "subject"
-    );
-    cy.wait(400);
-    cy.wait("@school").then(({ response }) => {
-      expect(response.statusCode).to.eq(200);
-    });
-    cy.wait("@subject").then(({ response }) => {
-      expect(response.statusCode).to.eq(200);
-    });
     step2();
   });
 
@@ -88,10 +59,7 @@ describe("student sign up flow straight forward and If user entered previously u
   });
 
   it("student should be able to set credentials", () => {
-    cy.intercept(
-      "POST",
-      "https://predictly.azurewebsites.net/auth/register"
-    ).as("register");
+    cy.intercept("POST", "**/auth/register").as("register");
     cy.get('[data-qa="signup_finish_input_username"]').type("sanjanasw");
     step5();
     cy.get('[data-qa="signup_finish_btn_submit"]').click();
