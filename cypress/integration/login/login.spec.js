@@ -57,7 +57,7 @@ describe("student should be able to login to system using login screen", () => {
   });
 
   it("Users not be able to login to the system with invalid credentials", () => {
-    cy.visit("http://localhost:4200/auth/login");
+    cy.visit("https://app.predictly.live/auth/login");
     cy.intercept("POST", "**/auth/login").as("login");
 
     cy.get('[data-qa="auth_login_input_username"]').type("sanjanasw");
@@ -75,7 +75,7 @@ describe("student should be able to login to system using login screen", () => {
   });
 
   it("Users not be able to login to the system without confirming email", () => {
-    cy.visit("http://localhost:4200/auth/login");
+    cy.visit("https://app.predictly.live/auth/login");
     cy.intercept("POST", "**/auth/login").as("login");
 
     cy.get('[data-qa="auth_login_input_username"]').type("testStaff");
